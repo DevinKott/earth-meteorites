@@ -6,6 +6,7 @@ import SliderComp from './comps/Slider'
 import MeteoriteMap from './comps/MeteoriteMap'
 
 function App() {
+    const [location, setLocation] = useState({ latitude: undefined, longitude: undefined });
     const [meteorites, setMeteorites] = useState([]);
     const [range, setRange] = useState(undefined);
 
@@ -15,6 +16,10 @@ function App() {
 
     const setMeteoritesArray = (arr) => {
         setMeteorites(arr);
+    }
+
+    const setLocationObj = (loc) => {
+        setLocation(loc);
     }
 
     return (
@@ -38,10 +43,14 @@ function App() {
                     nearest meteorite landings. At no point is your location sent to anyone, including
                     me. Please audit the Network Tab in your browser to verify.
                 </p>
-                <RequestLocation />
+                <RequestLocation setLocationObj={setLocationObj}/>
                 <LoadMeteorites setMeteoritesArray={setMeteoritesArray}/>
                 <SliderComp setRangePass={setRangePass}/>
-                <MeteoriteMap />
+                {
+                    location.latitude !== undefined && location.longitude !== undefined && meteorites.length > 0 &&
+                    <MeteoriteMap location={location} meteorites={meteorites}/>
+                }
+                
             </section>
         </main>
     );
