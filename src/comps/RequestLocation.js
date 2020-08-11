@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ErrorDialog from './dialogs/ErrorDialog'
 
 const DECIMALS = 6;
 const URL = 'https://data.nasa.gov/resource/y77d-th95.json';
@@ -80,12 +81,10 @@ function RequestLocation(props) {
             </section>
             {
                 error &&
-                <section>
-                    <span className='text-red-700'>
-                        There was a problem requesting your location.
-                        This application will not function if you do not allow access.
-                    </span>
-                </section>
+                <ErrorDialog
+                    title={`Location Error!`}
+                    text={`There was a problem requesting your location. This application will not function if you do not allow access.`}
+                />
             }
         </section>
     );
