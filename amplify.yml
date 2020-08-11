@@ -3,10 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
+        - npm install -g postcss-cli autoprefixer
         - npm ci
     build:
       commands:
-        - postcss src/assets/tailwind.css -o src/assets/main.css
         - npm run build
   artifacts:
     baseDirectory: build
