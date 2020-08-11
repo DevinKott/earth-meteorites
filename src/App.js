@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import RequestLocation from './comps/RequestLocation'
 import LoadMeteorites from './comps/LoadMeteorites'
 import SliderComp from './comps/Slider'
+import MeteoriteMap from './comps/MeteoriteMap'
 
 function App() {
     const [meteorites, setMeteorites] = useState([]);
@@ -40,6 +41,7 @@ function App() {
                 <RequestLocation />
                 <LoadMeteorites setMeteoritesArray={setMeteoritesArray}/>
                 <SliderComp setRangePass={setRangePass}/>
+                <MeteoriteMap />
             </section>
         </main>
     );
