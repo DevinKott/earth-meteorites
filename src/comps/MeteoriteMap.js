@@ -2,7 +2,7 @@ import React, { createRef, useEffect } from 'react';
 import * as mapboxgl from 'mapbox-gl'
 import moment from 'moment'
 import { getDistance } from 'geolib'
-import InformationDialog from './InformationDialog'
+import InformationDialog from './dialogs/InformationDialog'
 
 const DEFAULT_ZOOM_DISTANCE = 5;
 
