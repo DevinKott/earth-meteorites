@@ -15,7 +15,7 @@ function SliderComp(props) {
     } = props;
 
     const onSliderChange = (event) => {
-        setValue(event.target.value)
+        setValue(event.target.value);
     }
 
     const setDistance = () => {
@@ -41,6 +41,7 @@ function SliderComp(props) {
                     value={value}
                     onChange={onSliderChange}
                     onMouseUp={setDistance}
+                    onTouchEnd={setDistance}
                 />
             </section>
             <section
