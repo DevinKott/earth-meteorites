@@ -2,6 +2,9 @@ import React, { createRef, useEffect } from 'react';
 import * as mapboxgl from 'mapbox-gl'
 import moment from 'moment'
 import { getDistance } from 'geolib'
+import InformationDialog from './InformationDialog'
+
+const DEFAULT_ZOOM_DISTANCE = 5;
 
 function MeteoriteMap(props) {
     const mapRef = createRef();
@@ -14,19 +17,17 @@ function MeteoriteMap(props) {
 
     useEffect(
         () => {
-            console.log(process.env)
             mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
-
-            console.log(location)
-
             let map = new mapboxgl.Map(
                 {
                     container: mapRef.current,
                     style: 'mapbox://styles/mapbox/streets-v11',
                     center: [location.longitude || 0, location.latitude || 0],
-                    zoom: 6
+                    zoom: DEFAULT_ZOOM_DISTANCE
                 }
             );
+
+            map.addControl(new mapboxgl.NavigationControl());
 
             meteorites.forEach(
                 (meteor) => {
@@ -66,6 +67,9 @@ function MeteoriteMap(props) {
             >
                 Map
             </h3>
+            <InformationDialog
+                text='Click and drag the mouse to move around the map. Scroll to zoom.'
+            />
             <section className='mb-4 mt-4'>
                 <div
                     style={{width: '100%', height: '460px'}}
