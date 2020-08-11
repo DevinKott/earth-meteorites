@@ -1,7 +1,26 @@
 import React, { useState } from 'react';
 
-function SliderComp() {
-    const [location, setLocation] = useState({ latitude: undefined, longitude: undefined });
+const RANGE_OPTIONS = {
+    MIN: 200,
+    MAX: 5000,
+    STEP: 100,
+    START: 200
+}
+
+function SliderComp(props) {
+    const [value, setValue] = useState(RANGE_OPTIONS.START);
+
+    const {
+        setRangePass
+    } = props;
+
+    const onSliderChange = (event) => {
+        setValue(event.target.value)
+    }
+
+    const setDistance = () => {
+        setRangePass(value);
+    }
 
     return (
         <section
@@ -13,14 +32,21 @@ function SliderComp() {
                 Step 3
             </h3>
             <span>Please set a distance using the slider.</span>
-            <section>
-                <input type="range"/>
+            <section className='mb-4 mt-4'>
+                <input 
+                    type="range"
+                    min={RANGE_OPTIONS.MIN}
+                    max={RANGE_OPTIONS.MAX}
+                    step={RANGE_OPTIONS.STEP}
+                    value={value}
+                    onChange={onSliderChange}
+                    onMouseUp={setDistance}
+                />
             </section>
             <section
                 className='flex flex-col'
             >
-                <span className='font-semibold'>Latitude: {location.latitude !== undefined ? parseFloat(location.latitude).toFixed(6) : 'Not available.'}</span>
-                <span className='font-semibold'>Longtitude: {location.longitude !== undefined ? parseFloat(location.longitude).toFixed(6) : 'Not available.'}</span>
+                <span className='font-semibold'>Range: {value} miles</span>
             </section>
         </section>
     );
