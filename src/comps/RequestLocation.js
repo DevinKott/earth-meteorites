@@ -38,7 +38,7 @@ function RequestLocation() {
             </h3>
             <span>Please click the button below to enable location tracking from your browser.</span>
             <button
-                className='shadow-md max-w-md p-4 mt-4 mb-4'
+                className='max-w-xs p-2 mt-4 mb-4 font-semibold bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow'
                 onClick={buttonHandler}
             >
                 Enable Location
