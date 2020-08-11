@@ -1,17 +1,18 @@
 import React from 'react';
 
 import RequestLocation from './comps/RequestLocation'
+import LoadMeteorites from './comps/LoadMeteorites'
 
 function App() {
     return (
         <main
-            class='flex justify-center text-gray-800'
+        className='flex justify-center text-gray-800'
         >
             <section
-                class='max-w-4xl w-full p-4'
+                className='max-w-4xl w-full p-4'
             >
                 <h1
-                    class='text-3xl font-semibold mt-4 mb-4'
+                    className='text-3xl font-semibold mt-4 mb-4'
                 >
                     Earth Meteorites
                 </h1>
@@ -25,6 +26,7 @@ function App() {
                     me. Please audit the Network Tab in your browser to verify.
                 </p>
                 <RequestLocation />
+                <LoadMeteorites />
             </section>
         </main>
     );
