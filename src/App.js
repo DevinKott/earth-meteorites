@@ -1,5 +1,7 @@
 import React from 'react';
 
+import RequestLocation from './comps/RequestLocation'
+
 function App() {
     return (
         <main
@@ -22,21 +24,7 @@ function App() {
                     nearest meteorite landings. At no point is your location sent to anyone, including
                     me. Please audit the Network Tab in your browser to verify.
                 </p>
-                <section
-                    class='flex flex-col'
-                >
-                    <h3
-                        class='text-xl font-semibold mt-4 mb-4'
-                    >
-                        Step 1
-                    </h3>
-                    <span>Please click the button below to enable location tracking from your browser.</span>
-                    <button
-                        class='shadow-md max-w-md p-4 mt-4 mb-4'
-                    >
-                        Enable Location
-                    </button>
-                </section>
+                <RequestLocation />
             </section>
         </main>
     );
