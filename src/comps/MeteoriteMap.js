@@ -21,7 +21,7 @@ function MeteoriteMap(props) {
                     container: mapRef.current,
                     style: 'mapbox://styles/mapbox/streets-v11',
                     center: [location.longitude || 0, location.latitude || 0],
-                    zoom: 2
+                    zoom: 6
                 }
             );
 
