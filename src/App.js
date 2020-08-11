@@ -2,6 +2,7 @@ import React from 'react';
 
 import RequestLocation from './comps/RequestLocation'
 import LoadMeteorites from './comps/LoadMeteorites'
+import SliderComp from './comps/Slider'
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                 </p>
                 <RequestLocation />
                 <LoadMeteorites />
+                <SliderComp />
             </section>
         </main>
     );
