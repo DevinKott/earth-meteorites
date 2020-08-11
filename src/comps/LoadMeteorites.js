@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 
 const URL = 'https://data.nasa.gov/resource/y77d-th95.json';
 
-function LoadMeteorites() {
+function LoadMeteorites(props) {
     const [meteorites, setMeteorites] = useState([]);
     const [error, setError] = useState(false);
+
+    const {
+        setMeteoritesArray
+    } = props;
 
     const buttonHandler = () => {
         fetch(`${URL}`).then(
             async (response) => {
                 const json = await response.json();
                 setMeteorites(json);
-                console.log(json);
+                setMeteoritesArray(json);
             }
         ).catch(
             () => {
