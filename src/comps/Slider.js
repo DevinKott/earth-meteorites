@@ -29,9 +29,9 @@ function SliderComp(props) {
             <h3
                 className='text-xl font-semibold mt-4 mb-4'
             >
-                Step 3
+                Step 2
             </h3>
-            <span>Please set a distance using the slider.</span>
+            <span>Use the slider to set a distance parameter.</span>
             <section className='mb-4 mt-4'>
                 <input 
                     type="range"
