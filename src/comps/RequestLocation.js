@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 
 const DECIMALS = 6;
 
-function RequestLocation() {
+function RequestLocation(props) {
     const [location, setLocation] = useState({ latitude: undefined, longitude: undefined });
     const [error, setError] = useState(false);
+
+    const {
+        setLocationObj
+    } = props;
 
     const buttonHandler = () => {
         if (navigator.geolocation) {
@@ -16,6 +20,12 @@ function RequestLocation() {
                             longitude: position.coords.longitude
                         }
                     );
+                    setLocationObj(
+                        {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        }
+                    )
                     setError(false);
                 },
                 (error) => {
