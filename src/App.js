@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import RequestLocation from './comps/RequestLocation'
 import LoadMeteorites from './comps/LoadMeteorites'
 import SliderComp from './comps/Slider'
 
 function App() {
+    const [meteorites, setMeteorites] = useState([]);
+    const [range, setRange] = useState(undefined);
+
+    const setRangePass = (incomingRange) => {
+        setRange(incomingRange);
+    }
+
+    const setMeteoritesArray = (arr) => {
+        setMeteorites(arr);
+    }
+
     return (
         <main
         className='flex justify-center text-gray-800'
@@ -27,8 +38,8 @@ function App() {
                     me. Please audit the Network Tab in your browser to verify.
                 </p>
                 <RequestLocation />
-                <LoadMeteorites />
-                <SliderComp />
+                <LoadMeteorites setMeteoritesArray={setMeteoritesArray}/>
+                <SliderComp setRangePass={setRangePass}/>
             </section>
         </main>
     );
