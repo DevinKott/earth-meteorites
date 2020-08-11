@@ -47,8 +47,8 @@ function App() {
                 <LoadMeteorites setMeteoritesArray={setMeteoritesArray}/>
                 <SliderComp setRangePass={setRangePass}/>
                 {
-                    location.latitude !== undefined && location.longitude !== undefined && meteorites.length > 0 &&
-                    <MeteoriteMap location={location} meteorites={meteorites}/>
+                    location.latitude !== undefined && location.longitude !== undefined && meteorites.length > 0 && range !== undefined &&
+                    <MeteoriteMap location={location} meteorites={meteorites} range={range}/>
                 }
                 
             </section>

@@ -1,12 +1,15 @@
 import React, { createRef, useEffect } from 'react';
 import * as mapboxgl from 'mapbox-gl'
+import moment from 'moment'
+import { getDistance } from 'geolib'
 
 function MeteoriteMap(props) {
     const mapRef = createRef();
 
     const {
         location,
-        meteorites
+        meteorites,
+        range
     } = props;
 
     useEffect(
@@ -37,14 +40,21 @@ function MeteoriteMap(props) {
                         return;
                     }
 
-                    console.debug('adding')
+                    const rangeMeters = range * 1609.344;
+                    const distance = getDistance(
+                        { latitude: location.latitude, longitude: location.longitude },
+                        { latitude: latitude, longitude: longitude }
+                    );
 
-                    new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
+                    if (distance < rangeMeters) {
+                        let popup = new mapboxgl.Popup().setText(`${name}, ${moment(year).year()}`);
+                        new mapboxgl.Marker().setLngLat([longitude, latitude]).setPopup(popup).addTo(map);
+                    }
                 }
             );
             
         },
-        [mapRef, location.latitude, location.longitude, location, meteorites]
+        [mapRef, location.latitude, location.longitude, location, meteorites, range]
     );
 
     return (
