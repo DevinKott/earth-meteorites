@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
 import RequestLocation from './comps/RequestLocation'
-import LoadMeteorites from './comps/LoadMeteorites'
 import SliderComp from './comps/Slider'
 import MeteoriteMap from './comps/MeteoriteMap'
 
 function App() {
     const [location, setLocation] = useState({ latitude: undefined, longitude: undefined });
     const [meteorites, setMeteorites] = useState([]);
-    const [range, setRange] = useState(undefined);
+    const [range, setRange] = useState(200);
 
     const setRangePass = (incomingRange) => {
         setRange(incomingRange);
@@ -43,8 +42,7 @@ function App() {
                     nearest meteorite landings. At no point is your location sent to anyone, including
                     me. Please audit the Network Tab in your browser to verify.
                 </p>
-                <RequestLocation setLocationObj={setLocationObj}/>
-                <LoadMeteorites setMeteoritesArray={setMeteoritesArray}/>
+                <RequestLocation setLocationObj={setLocationObj} setMeteoritesArray={setMeteoritesArray}/>
                 <SliderComp setRangePass={setRangePass}/>
                 {
                     location.latitude !== undefined && location.longitude !== undefined && meteorites.length > 0 && range !== undefined &&
