@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
 
 const DECIMALS = 6;
+const URL = 'https://data.nasa.gov/resource/y77d-th95.json';
 
 function RequestLocation(props) {
     const [location, setLocation] = useState({ latitude: undefined, longitude: undefined });
     const [error, setError] = useState(false);
+    const [meteorites, setMeteorites] = useState([]);
 
     const {
-        setLocationObj
+        setLocationObj,
+        setMeteoritesArray
     } = props;
+
+    const grabData = () => {
+        fetch(`${URL}`).then(
+            async (response) => {
+                const json = await response.json();
+                setMeteorites(json);
+                setMeteoritesArray(json);
+                setError(false);
+            }
+        ).catch(
+            () => {
+                setError(true);
+            }
+        );
+    }
 
     const buttonHandler = () => {
         if (navigator.geolocation) {
@@ -25,10 +43,10 @@ function RequestLocation(props) {
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         }
-                    )
-                    setError(false);
+                    );
+                    grabData();
                 },
-                (error) => {
+                () => {
                     setError(true);
                 }
             );
@@ -58,6 +76,7 @@ function RequestLocation(props) {
             >
                 <span className='font-semibold'>Latitude: {location.latitude !== undefined ? parseFloat(location.latitude).toFixed(DECIMALS) : 'Not available.'}</span>
                 <span className='font-semibold'>Longtitude: {location.longitude !== undefined ? parseFloat(location.longitude).toFixed(DECIMALS) : 'Not available.'}</span>
+                <span className='font-semibold'>Meteorites Loaded: {meteorites.length}</span>
             </section>
             {
                 error &&
